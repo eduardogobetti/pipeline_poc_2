@@ -11,11 +11,13 @@ on:
 jobs:
   TagEuDev: 
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' && 
+    if: ${{ github.event_name   == 'pull_request' && 
             github.event.action == 'closed' && 
-            github.event.pull_request.merged == true && 
+            github.event.pull_request.merged   == true && 
             github.event.pull_request.base.ref == 'main' &&
-            (startsWith(github.event.pull_request.head.ref, 'patch/') || startsWith(github.event.pull_request.head.ref, 'hotfix/')) }}
+            (startsWith(github.event.pull_request.head.ref, 'patch/')   || 
+             startsWith(github.event.pull_request.head.ref, 'hotfix/')  || 
+             startsWith(github.event.pull_request.head.ref, 'bugfix/')) }}
     permissions:
       contents: write            
     steps:
